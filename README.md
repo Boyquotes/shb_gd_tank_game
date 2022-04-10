@@ -10,11 +10,11 @@ Untuk mendownloadnya, kunjungi bagian Releases.
 
 ## Screenshot
 
-![ScreenShot](https://github.com/shbfrlnc/GDGMTNK/blob/main/assets/GDGMTNK1.png)
+![ScreenShot](assets/GDGMTNK1.png?raw=true)
 
-![ScreenShot](https://github.com/shbfrlnc/GDGMTNK/blob/main/assets/GDGMTNK2.png)
+![ScreenShot](assets/GDGMTNK2.png?raw=true)
 
-![ScreenShot](https://github.com/shbfrlnc/GDGMTNK/blob/main/assets/GDGMTNK3.png)
+![ScreenShot](assets/GDGMTNK3.png?raw=true)
 
 ## Info Tambahan
 
