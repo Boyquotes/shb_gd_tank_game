@@ -4,6 +4,12 @@
 
 Download the project on release page.
 
+## More Info
+
+Support me, my youtube channel, etc:
+
+- https://shbfrlnc.github.io
+
 ## Intro
 
 GDGMTNK is a Godot Engine Tank Game.
@@ -19,9 +25,3 @@ GDGMTNK is a Godot Engine Tank Game.
 ![ScreenShot](assets/GDGMTNK2.png?raw=true)
 
 ![ScreenShot](assets/GDGMTNK3.png?raw=true)
-
-## Info Tambahan
-
-Traktir Saya, Channel YouTube Saya, dan lain-lain:
-
-- https://sociabuzz.com/lsfkrshb
