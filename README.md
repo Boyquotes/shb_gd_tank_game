@@ -2,17 +2,17 @@
 
 ## Download
 
-Download the project on release page.
+Untuk mendownloadnya, kunjungi halaman Releases.
 
-## More Info
+## Info Lebih Lanjut
 
-Support me, my youtube channel, etc:
+TRAKTIR / WEBSITE / YOUTUBE / TWITTER:
 
 - https://shbfrlnc.github.io
 
 ## Intro
 
-GDGMTNK is a Godot Engine Tank Game.
+GDGMTNK adalah Godot Engine Tank Game.
 
 ## Screencast
 
