@@ -14,10 +14,6 @@ WEBSITE:
 
 GDGMTNK adalah Godot Engine Tank Game.
 
-## Screencast
-
-- https://www.youtube.com/playlist?list=PLOg7o5N1MDWTzK36ojy3wswRK3YAbxg8M
-
 ## Screenshot
 
 ![ScreenShot](assets/GDGMTNK1.png?raw=true)
