@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Data/RFSoda100.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/StartMenu.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/WorldTestWithObstacle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Data/RFSoda40.tres" type="DynamicFont" id=4]
+
+[node name="StartMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+next_scene = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 25.0
+margin_bottom = 198.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "GDGMTNK"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -181.0
+margin_top = 204.0
+margin_right = 170.0
+margin_bottom = 250.0
+custom_fonts/font = ExtResource( 4 )
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -182.0
+margin_top = 263.0
+margin_right = 172.0
+margin_bottom = 309.0
+custom_fonts/font = ExtResource( 4 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
