@@ -1,10 +1,6 @@
-# GDGMTNK
+# GDGMTNK - Godot Engine Tank Game
 
-## Download
-
-Untuk mendownloadnya, kunjungi halaman Releases.
-
-## Intro
+## Software Apakah Ini?
 
 GDGMTNK adalah Godot Engine Tank Game.
 
