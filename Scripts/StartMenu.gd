@@ -1,3 +1,6 @@
+# script ini untuk mengatur scene StartMenu.tscn
+
+# extend dari Control.
 extends Control
 
 export(Resource) var next_scene

@@ -1,3 +1,5 @@
+# belum diimplementasikan.
+
 extends "res://Scripts/FSMState.gd"
 
 var timer : float = 0.0

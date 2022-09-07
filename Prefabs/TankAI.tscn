@@ -139,17 +139,14 @@ exp_sound = ExtResource( 10 )
 [node name="Body" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.158605, 0 )
 mesh = SubResource( 1 )
-material/0 = null
 
 [node name="TurretBody" type="MeshInstance" parent="Body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928066, 0.0491275 )
 mesh = SubResource( 2 )
-material/0 = null
 
 [node name="Muzzle" type="MeshInstance" parent="Body/TurretBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0102384, -0.448471 )
 mesh = SubResource( 3 )
-material/0 = null
 
 [node name="Spawn" type="Spatial" parent="Body/TurretBody/Muzzle"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.29457 )
@@ -157,27 +154,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.29457 )
 [node name="Cylinder" type="MeshInstance" parent="Body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43512, 0 )
 mesh = SubResource( 4 )
-material/0 = null
 
 [node name="WheelRR" type="MeshInstance" parent="Body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02616, -0.019142, 0.733799 )
 mesh = SubResource( 5 )
-material/0 = null
 
 [node name="WheelFR" type="MeshInstance" parent="Body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02616, -0.019142, -0.794063 )
 mesh = SubResource( 6 )
-material/0 = null
 
 [node name="WheelRL" type="MeshInstance" parent="Body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02937, -0.019142, 0.733799 )
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="WheelFL" type="MeshInstance" parent="Body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02937, -0.019142, -0.794063 )
 mesh = SubResource( 8 )
-material/0 = null
 
 [node name="Core" type="CollisionShape" parent="."]
 transform = Transform( 0.883, 0, 0, 0, 0.73, 0, 0, 0, 1.688, 0, 0.148, 0 )

@@ -1,3 +1,5 @@
+# implementasi dummy state.
+
 extends "res://Scripts/FSMState.gd"
 
 func enter(fsm):

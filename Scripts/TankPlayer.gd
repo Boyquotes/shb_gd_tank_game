@@ -1,6 +1,9 @@
+# script ini untuk mengendalikan tank player.
+
+# extend dari KinematicBody.
 extends KinematicBody
 
-# Variables
+# begin: variabel ini bisa diedit di inspector
 export var health = 10
 export var acceleration : float = 50.0
 export var gravity : float = -9.8
@@ -11,17 +14,22 @@ export var rotation_speed_vertical : float = 80.0
 export var turret_rotation_speed_horizontal : float = 80.0
 export var turret_rotation_speed_vertical : float = 80.0
 export var wheel_rotation_speed : float = 5.0;
+# end: variabel ini bisa diedit di inspector
 
+# begin: variabel ini tidak bisa diedit di inspector
 var vel : Vector3 = Vector3()
 var temp_vel  : Vector3 = Vector3()
 var temp_rot : float = 0.0
 var wheel_rot_left : float = 0.0
 var wheel_rot_right : float = 0.0
+# end: variabel ini tidak bisa diedit di inspector
 
-# onready Variables
+# begin: variabel ini bisa diedit di inspector
 export(NodePath) var health_hud_path
 var health_hud = null
+# end: variabel ini bisa diedit di inspector
 
+# begin: referensi ke Node.
 onready var tank_body = get_node("Body")
 onready var turret_horizontal = get_node("Body/TurretBody")
 onready var turret_vertical = get_node("Body/TurretBody/Muzzle")
@@ -31,10 +39,14 @@ onready var wheel_fr = get_node("Body/WheelFR")
 onready var wheel_rl = get_node("Body/WheelRL")
 onready var wheel_rr = get_node("Body/WheelRR")
 onready var engine_audio = get_node("Engine")
+# end: referensi ke Node.
 
+# begin: variabel resource.
 export(Resource) var bullet
 export(Resource) var exp_sound
+# end: variabel resource
 
+# pelajari signal terlebih dahulu.
 signal player_dead
 
 # Methods
@@ -47,12 +59,15 @@ func _ready():
 		health_hud.value = health
 	
 func _process(delta):
+	# putar roda.
 	wheel_fl.rotate_x(deg2rad(wheel_rot_left))
 	wheel_rl.rotate_x(deg2rad(wheel_rot_left))
 	
+	# putar roda.
 	wheel_fr.rotate_x(deg2rad(wheel_rot_right))
 	wheel_rr.rotate_x(deg2rad(wheel_rot_right))
 	
+	# sound effect.
 	engine_audio.pitch_scale = lerp(engine_audio.pitch_scale, 1.0 + (((abs(wheel_rot_left) + abs(wheel_rot_right))/ (2.0 * wheel_rotation_speed)) * 1.0), acceleration/5.0 * delta)
 	#engine_audio.pitch_scale = 1.0 + (((abs(wheel_rot_left) + abs(wheel_rot_right))/ (2.0 * wheel_rotation_speed)) * 1.0)
 	
@@ -73,6 +88,7 @@ func update_reset():
 	wheel_rot_right = 0
 	
 func update_movement(delta):
+	# supaya normal tetap menghadap ke atas tank walaupun lantainya miring.
 	var floor_normal : Vector3 = get_floor_normal()
 	var rot_at_normal : Quat = ftr_quat(Vector3.UP, floor_normal)
 	if(floor_normal == Vector3.ZERO):
@@ -81,6 +97,7 @@ func update_movement(delta):
 	rotation = (rot_at_normal_multiply * rot_at_normal).get_euler()
 	
 	if not is_on_floor():
+		# jika tidak menyentuh lantai, maka jatuhlah.
 		temp_vel.y += delta * gravity
 		
 	vel.x = lerp(vel.x, temp_vel.x, acceleration * delta)
@@ -92,8 +109,10 @@ func update_movement(delta):
 	if not kc == null:
 		#print(kc.position)
 		pass
-		
+
+# untuk input handing.		
 func update_input(delta):
+	# input handling, kali ini bukan simulasi, tapi sungguhan.
 	if Input.is_action_pressed("move_forward"):
 		var tgrav : float = temp_vel.y
 		temp_vel = -transform.basis.z.normalized() * max_speed
@@ -128,6 +147,7 @@ func update_input(delta):
 		bullet_instance.target_group = "enemy"
 		get_tree().get_root().add_child(bullet_instance)
 
+# untuk menerima damage.
 func damage():
 	health = health - 1
 	
@@ -135,14 +155,17 @@ func damage():
 		health_hud.set_hud_value(health)
 		
 	if health <= 0:
+		# jika player tank mati.
 		#print("ally is dead")
 		
+		# mainkan efek suara.
 		var asp = AudioStreamPlayer3D.new()
 		add_child(asp)
 		asp.stream = load(exp_sound.resource_path)
 		asp.unit_db = 13
 		asp.play()
 		
+		# tunggu sebentar, lalu hapus.
 		yield(get_tree().create_timer(0.5),"timeout")
 		queue_free()
 		emit_signal("player_dead")

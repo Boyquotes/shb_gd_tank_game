@@ -1,6 +1,9 @@
+# script ini untuk mengendalikan tank AI.
+
+# extend dari KinematicBody.
 extends KinematicBody
 
-# Variables
+# begin: variabel ini bisa diedit di inspector
 export var health = 10
 export var acceleration : float = 50.0
 export var gravity : float = -9.8
@@ -14,7 +17,9 @@ export var turret_rotation_speed_vertical : float = 80.0
 export var wheel_rotation_speed : float = 5.0;
 export var ray_length :float = 500.0
 export var is_moving_forward : bool = true
+# end: variabel ini bisa diedit di inspector
 
+# begin: variabel ini tidak bisa diedit di inspector
 var vel : Vector3 = Vector3()
 var temp_vel  : Vector3 = Vector3()
 var temp_rot : float = 0.0
@@ -25,8 +30,9 @@ var path_nodes = []
 var node_index = 0
 var vertical_input_str = ""
 var horizontal_input_str = ""
+# end: variabel ini tidak bisa diedit di inspector
 
-# onready Variables
+# begin: variabel ini bisa diedit di inspector
 export(NodePath) var nav_path
 var nav = null
 
@@ -35,7 +41,9 @@ var cam = null
 
 export(NodePath) var debug_path
 var debug = null
+# end: variabel ini bisa diedit di inspector
 
+# begin: referensi ke Node.
 onready var fsm = get_node("FSM")
 onready var engine_audio = get_node("Engine")
 onready var tank_body = get_node("Body")
@@ -46,10 +54,14 @@ onready var wheel_fl = get_node("Body/WheelFL")
 onready var wheel_fr = get_node("Body/WheelFR")
 onready var wheel_rl = get_node("Body/WheelRL")
 onready var wheel_rr = get_node("Body/WheelRR")
+# end: referensi ke Node.
 
+# begin: variabel resource.
 export(Resource) var bullet
 export(Resource) var exp_sound
+# end: variabel resource.
 
+# pelajari signal terlebih dahulu.
 signal ai_dead
 
 # Methods
@@ -65,19 +77,24 @@ func _ready():
 	debug = get_node(debug_path)
 	
 	if nav == null:
+		# mungkin saja ada di parent node.
 		nav = get_parent()
 	
+	# mulai dari state patrol.
 	fsm.change_state("Patrol")
 	temp_rot = rad2deg(global_transform.basis.get_euler().y);
 	pass
 	
 func _process(delta):
+	# putar roda.
 	wheel_fl.rotate_x(deg2rad(wheel_rot_left))
 	wheel_rl.rotate_x(deg2rad(wheel_rot_left))
 	
+	# putar roda.
 	wheel_fr.rotate_x(deg2rad(wheel_rot_right))
 	wheel_rr.rotate_x(deg2rad(wheel_rot_right))
 	
+	# sound effect.
 	engine_audio.pitch_scale = lerp(engine_audio.pitch_scale, 1.0 + (((abs(wheel_rot_left) + abs(wheel_rot_right))/ (2.0 * wheel_rotation_speed)) * 1.0), acceleration/5.0 * delta)
 	#engine_audio.pitch_scale = 1.0 + (((abs(wheel_rot_left) + abs(wheel_rot_right))/ (2.0 * wheel_rotation_speed)) * 1.0)
 	pass
@@ -95,6 +112,10 @@ func _input(event):
 		return
 		
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:
+		# untuk move to position sambil maju.
+		# hanya bekerja jika state awalnya dummy.
+		# berhubung di script ini di awal state nya Patrol maka kode di
+		# blok ini tidak berpengaruh.
 		var from = cam.project_ray_origin(event.position)
 		var to = from + cam.project_ray_normal(event.position) * ray_length
 		var result = get_world().direct_space_state.intersect_ray(from, to)
@@ -107,6 +128,10 @@ func _input(event):
 			# debug.global_transform.origin = result["position"]
 			
 	elif event is InputEventMouseButton and event.pressed and event.button_index == 2:
+		# untuk move to position sambil mundur.
+		# hanya bekerja jika state awalnya dummy.
+		# berhubung di script ini di awal state nya Patrol maka kode di
+		# blok ini tidak berpengaruh.
 		var from = cam.project_ray_origin(event.position)
 		var to = from + cam.project_ray_normal(event.position) * ray_length
 		var result = get_world().direct_space_state.intersect_ray(from, to)
@@ -132,7 +157,8 @@ func update_reset():
 func update_game_logic(delta):
 	fsm.update(delta)
 	pass
-	
+
+# untuk follow path dan untuk actuator.
 func update_path(delta):
 	var from = next_node()
 	if from != null:
@@ -165,8 +191,10 @@ func update_path(delta):
 				if abs(dir.z) > 0:
 					vertical_input_str = "move_forward"
 					pass
-					
+
+# untuk gerakan tank.					
 func update_movement(delta):
+	# supaya normal tetap menghadap ke atas tank walaupun lantainya miring.
 	var floor_normal : Vector3 = get_floor_normal()
 	var rot_at_normal : Quat = ftr_quat(Vector3.UP, floor_normal)
 	if(floor_normal == Vector3.ZERO):
@@ -175,6 +203,7 @@ func update_movement(delta):
 	rotation = (rot_at_normal_multiply * rot_at_normal).get_euler()
 	
 	if not is_on_floor():
+		# jika tidak menyentuh lantai, maka jatuhlah.
 		temp_vel.y +=  gravity * delta
 	
 	vel.x = lerp(vel.x, temp_vel.x, acceleration * delta)
@@ -187,7 +216,10 @@ func update_movement(delta):
 	#if not kc == null:
 	#	print(kc.position)
 	#	pass
-		
+
+# simulasi input, karena ini dikendalikan AI.
+# nanti akan berpengaruh di actuator.
+# lihat	update_path di atas.
 func update_input(delta):
 	if vertical_input_str == "move_forward":
 		var tgrav : float = temp_vel.y
@@ -213,14 +245,16 @@ func update_input(delta):
 		wheel_rot_left -= 1.0 * wheel_rotation_speed
 		wheel_rot_right += 1.0 * wheel_rotation_speed
 		pass
-		
+
+# untuk menembak.		
 func shoot():
 	var bullet_instance = bullet.instance()
 	bullet_instance.global_transform = spawn.global_transform
 	bullet_instance.target_group = "ally"
 	get_tree().get_root().add_child(bullet_instance)
 	pass
-	
+
+# untuk menerima damage.
 func damage():
 	health = health - 1
 	if health <= 0:
@@ -236,21 +270,24 @@ func damage():
 		queue_free()
 		
 		emit_signal("ai_dead")
-	
+
+# untuk membidik.	
 func aim(target_pos):
 	turret_vertical.look_at(target_pos, Vector3.UP)
 	var el = turret_vertical.transform.basis.get_euler()
 	turret_horizontal.rotate_y(el.y)
 	turret_vertical.rotate_x(el.x)
 	pass
-	
+
+# untuk mendapatkan path nodes.	
 func request_path(target_pos):
 	var from = global_transform.origin
 	var to = target_pos
 	path_nodes = nav.get_simple_path(from, to)
 	reset_node_index()
 	pass
-	
+
+# untuk mendapatkan path nodes random.	
 func request_random_path(range_min, range_max):
 	var ori = global_transform.origin
 	var randx = rand_range(range_min, range_max)
