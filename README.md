@@ -6,11 +6,11 @@ GDGMTNK adalah Godot Engine Tank Game.
 
 ## Screenshot
 
-![ScreenShot](.readme-assets/GDGMTNK1.png?raw=true)
+![ScreenShot](.readme-assets/GDGMTNK-1.png?raw=true)
 
-![ScreenShot](.readme-assets/GDGMTNK2.png?raw=true)
+![ScreenShot](.readme-assets/GDGMTNK-2.png?raw=true)
 
-![ScreenShot](.readme-assets/GDGMTNK3.png?raw=true)
+![ScreenShot](.readme-assets/GDGMTNK-3.png?raw=true)
 
 ## Cara Mencoba Kode Ini
 
