@@ -1,16 +1,16 @@
-# GDGMTNK - Godot Engine Tank Game
+# SHBGDTankGame - Godot Engine Tank Game
 
 ## Software Apakah Ini?
 
-GDGMTNK adalah Godot Engine Tank Game.
+SHBGDTankGame adalah Godot Engine Tank Game.
 
 ## Screenshot
 
-![ScreenShot](.readme-assets/GDGMTNK-1.png?raw=true)
+![ScreenShot](.readme-assets/SHBGDTankGame-1.png?raw=true)
 
-![ScreenShot](.readme-assets/GDGMTNK-2.png?raw=true)
+![ScreenShot](.readme-assets/SHBGDTankGame-2.png?raw=true)
 
-![ScreenShot](.readme-assets/GDGMTNK-3.png?raw=true)
+![ScreenShot](.readme-assets/SHBGDTankGame-3.png?raw=true)
 
 ## Cara Mencoba Kode Ini
 
