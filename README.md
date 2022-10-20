@@ -6,8 +6,6 @@ SHBGDTankGame adalah Godot Engine Tank Game.
 
 ## Screenshot
 
-![ScreenShot](.readme-assets/SHBGDTankGame-1.png?raw=true)
-
 ![ScreenShot](.readme-assets/SHBGDTankGame-2.png?raw=true)
 
 ![ScreenShot](.readme-assets/SHBGDTankGame-3.png?raw=true)
