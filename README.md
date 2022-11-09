@@ -1,5 +1,9 @@
 # SHBGDTankGame - Godot Engine Tank Game
 
+## Traktir Saya
+
+Berikan saya uang gratis di https://bit.ly/shb-traktir
+
 ## Software Apakah Ini? 
 
 SHBGDTankGame adalah Godot Engine Tank Game.
