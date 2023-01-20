@@ -1,12 +1,5 @@
 # SHBGDTankGame - Godot Engine Tank Game
 
-## Link-Link Penting
-
-- SOFTWARE GRATIS: https://shbfrlnc.github.io/
-- BLOG: https://shbfrlnc.github.io/tags/blog/
-- PENGUMUMAN: https://shbfrlnc.github.io/tags/pengumuman/
-- DUKUNG: https://shbfrlnc.github.io/dukung.html
-
 ## Software Apakah Ini? 
 
 SHBGDTankGame adalah Godot Engine Tank Game.
