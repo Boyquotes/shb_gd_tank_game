@@ -2,7 +2,7 @@
 
 ## Software Apakah Ini? 
 
-SHBGDTankGame adalah Godot Engine Tank Game.
+SHBGDTankGame adalah Godot Engine Tank Game...
 
 ## Screenshot
 
