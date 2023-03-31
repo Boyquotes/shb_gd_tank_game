@@ -1,4 +1,4 @@
-# SHBGDTankGame - Godot Engine Tank Game
+# shb_gd_tank_game - Godot Engine Tank Game
 
 ## Software Apakah Ini? 
 
